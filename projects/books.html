@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekomendavimo sistema</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <h1 class="h-auto bg-slate-900 text-slate-50 py-3 xl:px-52 px-20 sm:px-5 items-center text-xl flex gap-5 sticky top-0 bg-gradient-to-l from-sky-800 to-slate-900">
+        <b class="text-4xl font-bold">Lukas Janušauskas</b>
+        <a href="../index.html">Titulinis</a>
+        <a href="../projs.html">Projektai</a>
+        <a href="">CV</a>
+        <div class="flex-grow"></div>
+        <a href="https://github.com/lukasjanusauskas"><img src="../imgs/github-light.svg" style="width: 30px;" alt=""></a>
+        <a href="https://www.linkedin.com/in/lukas-janu%C5%A1auskas-6576392b1/"><img src="../imgs/linkedin.svg" style="width: 30px;" alt=""></a>
+    </h1>
+
+    <div id="main" class="w-3/4 m-auto pt-10 font-light text-lg">
+      <h2 class="text-2xl">Efektyviai suprojektuota rekomendavimo sistema yra labai svarbi eCommerece, online-streaming kompanijomis ir gali labai prisidėti prie jų sėkmės.
+        Aš pravesiu per, palyginus, efektyvios rekomendavimo sistemos kūrimą, pakeliui išmokstant daug apie duomenų mokslo ir ML konceptus.
+      </h2>
+
+      <h2 class="text-2xl font-bold pt-5" id="duom">Duomenys</h2>
+      <p class="">Šiam projektui užteko Amazon knygų įvertinimų duomenų rinkinio iš <a class="underline" href="https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews">Kaggle</a>. 
+        Paspaudus ant nuorodos matysis ERD diagramą, kuri vaizduoja, kokie duomenys yra rinkinyje, ir rinkinio lentelių ___ .
+        Duomenų valymo procesas užtruko labai ilgai, detaliau apie duomenų tvarkybos žingsnius parašyta <a class="underline" href="https://github.com/lukasjanusauskas/book_system/tree/recommender">repozitorijoje</a>. 
+        Sutvarkius, atsirinkus, ko man reikia gavau štai tokius duomenis, kurius įrašiau į PostgreSQL duomenų bazę:
+
+        <div class="pt-10 flex gap-10">
+          <img src="er-books.png" alt="">
+          <p>Lentelėje reviews yra palikta tik naudotojo ID ir knygos ID pora bei įvertinimas. Tačiau knygų lentelėje prisidėjo papildomų stulpelių. 
+            Stulpelis pcs yra knygos aparašymo principiniai komponentai, kitaip pasakius, 5 skaičių sąrašas, kuris glaustai apibendrina aprašymo tekstą(panaudotas tf-idf tokenizavimo metodas kartu su principinių komponentų analize).
+            Mean ir count stulpeliai tai atitinkamai yra vartotojų įvertinimų vidurkis ir skaičius. Stulpelis p_category, tuo tarpu, buvo išgautas sunkiau.
+            Ją gavau paėmęs knygos kategorijos skaitytojus ir pažiūrėjęs, kuri kategorija iš populiariausių 36 kategorijų sąrašo tarp išrinktų vartotojų, skaitoma dažniausiai.
+            Taip aš be jokių komplikuotų ML modelių, bandžiau sumažinti dimensijų skaičių, kad išvengčiau fenomeno angliškai vadinamo "overfitting". 
+          </p>
+        </div>
+
+        Turint sutvarkytus duomenis galime pradėti kalbėti apie analizę ir modeliavimą.
+
+      <h2 class="text-2xl font-bold pt-10">Tiriamoji ir klasterinė analizė</h2>
+
+      <h2 class="text-2xl font-bold pt-10">Modeliavimas</h2>
+      <p>
+        Rekomendavimo sistemų modeliai, pagal duotus duomenis skaidomi į dvi kategorijas: tiesioginiai ir netiesioginai(angl. explicit ir implicit).
+        Tiesioginis modelis bando nuspėti, kokį įvertinimą vartotojas suteiks prekei, o netiesioginiai bando nuspėti, kokią prekę pasirinks, sprendžiant pagal pirkimo istoriją(neturint įvertinimų).
+        Šiame projekte dirbame su įvertinimais, todėl modelis bus tiesioginis(angl. explicit). <br>
+        
+        Sekantis sprendimas buvo, kaip mes prognozuosim įvertinimus. Rekomendavimo sistemose yra labai daug būdų kaip tai padaryti, aš aptarsiu tik tai, ką pasirinkau.
+        Šiame projekte sukombinavau du algoritmus: <a href="https://surprise.readthedocs.io/en/stable/matrix_factorization.html" class="underline">Collaborative filtering su SVD</a>
+         ir vartotojų profilio kūrimu su sprendimų medžiais(<a href="https://xgboost.readthedocs.io/en/stable/" class="underline">XGBoost</a>).
+      </p>
+
+    </div>
+</body>
+</html>
