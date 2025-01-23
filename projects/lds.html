@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Lukas Jan | Fuel Analysis</title>
+  </head>
+  <body>
+    <h1
+      class="h-auto bg-slate-900 text-slate-50 py-3 xl:px-52 px-20 sm:px-5 items-center text-xl flex gap-5 sticky top-0 bg-gradient-to-l from-sky-800 to-slate-900"
+    >
+      <b class="text-4xl font-bold">Lukas Janušauskas</b>
+      <a href="../index.html">Titulinis</a>
+      <a href="">CV</a>
+      <div class="flex-grow"></div>
+      <a href="https://github.com/lukasjanusauskas"
+        ><img src="../imgs/github-light.svg" style="width: 30px" alt=""
+      /></a>
+      <a href="https://www.linkedin.com/in/lukas-janu%C5%A1auskas-6576392b1/"
+        ><img src="../imgs/linkedin.svg" style="width: 30px" alt=""
+      /></a>
+    </h1>
+
+    <main class="w-3/4 m-auto pt-10 flex flex-col gap-5">
+      <div>
+        <h2 class="text-4xl font-bold">Fuel and price indices analysis</h2>
+        <p>
+          In this project I obtain Lithuanian government data, using their
+          <a
+            href="https://osp.stat.gov.lt/rdb-rest"
+            class="text-blue-800 underline"
+            >Official Statistics Portal RESTful web service</a
+          >
+          (OSP SDMX 2.1 RESTful web service).
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-bold">Motivation</h2>
+
+      <div>
+        <h2 class="text-3xl font-bold">Data collection</h2>
+        <p class="w-2/3">
+          As mentioned earlier, I used the OSP RESTful web service to get their
+          . Because, I wanted to test my R programming skills, I decided, to
+          access the API programmaticaly, using R
+          <span class="font-mono text-sm">requests</span> and
+          <span class="font-mono text-sm">XML</span> libraries. Also, getting
+          data programatically, allows automatically updating, if you use a
+          scheduler and store the data in some kind of database or
+          datawarehouse.
+        </p>
+
+        <p class="w-2/3 mt-5">
+          The first problem was getting the codes for the indicators, that I
+          wanted to get. I wasn't able to find them in the data portal, so I
+          decided to scrape them programmatically with R. For this I only needed
+          to write a couple of functions and pass a list of dataset names
+          through the function.
+        </p>
+
+        <p class="w-2/3 mt-5">
+          After that, the next challenge was scraping the XML files provided by
+          the OSP API. For a single dataset I needed to make two calls to the
+          API: one for raw data, and another for the codes, since dimensions are
+          encoded. After translating the dimension codes, the final dataset is
+          cached.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-bold">Analysis</h2>
+
+      <h2 class="text-3xl font-bold">Final dashboard</h2>
+    </main>
+  </body>
+</html>
